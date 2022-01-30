@@ -13,7 +13,6 @@ public class Producer implements Runnable {
         this.buffer = buffer;
     }
 
-
     @Override
     public void run() {
         String src = "C:\\Users\\Igorj\\Desktop\\Стажер\\Multithreading\\src\\text.txt";
@@ -25,7 +24,6 @@ public class Producer implements Runnable {
             e.printStackTrace();
         }
         for (String number : list) {
-            //synchronized (buffer)
             {
                 try {
                     buffer.put(number);
@@ -33,9 +31,7 @@ public class Producer implements Runnable {
                     e.printStackTrace();
                 }
             }
-            // System.out.println(Thread.currentThread().getName() + " added " + number);
         }
-       // System.out.println(Thread.currentThread().getName() + " added " + Main.EOF);
         synchronized (buffer) {
             try {
                 buffer.put(Main.EOF);
